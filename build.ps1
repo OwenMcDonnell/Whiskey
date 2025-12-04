@@ -177,7 +177,7 @@ which dotnet
         {
             New-Item -Path $outputDirectory -ItemType 'Directory'
         }
-        dotnet --info
+
         dotnet --version
         $params = & {
             "--configuration=$($MSBuildConfiguration)"
@@ -199,7 +199,9 @@ which dotnet
         Write-Verbose "dotnet build $($params -join ' ')" -Verbose
         try
         {
-            dotnet build $params
+            dotnet build /filelogger9 /flp9:LogFile=msbuild9.log;Verbosity=diag
+
+            #dotnet build $params
         }
         finally
         {
