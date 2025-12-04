@@ -103,8 +103,8 @@ if( -not $SkipBootstrap )
 
     [Uri[]] $binToolUrls = @(
         'https://dist.nuget.org/win-x86-commandline/v6.10.2/nuget.exe',
-        'https://dot.net/v1/dotnet-install.sh',
-        'https://dot.net/v1/dotnet-install.ps1'
+        #'https://dot.net/v1/dotnet-install.sh',
+        #'https://dot.net/v1/dotnet-install.ps1'
     )
 
     foreach( $url in $binToolUrls )
