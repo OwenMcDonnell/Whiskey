@@ -229,7 +229,7 @@ which dotnet
     }
     finally
     {
-        #Pop-Location
+        Pop-Location
     }
 }
 
