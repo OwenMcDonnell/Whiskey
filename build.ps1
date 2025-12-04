@@ -177,7 +177,8 @@ which dotnet
         {
             New-Item -Path $outputDirectory -ItemType 'Directory'
         }
-
+        dotnet --info
+        dotnet --version
         $params = & {
             "--configuration=$($MSBuildConfiguration)"
             '/p:Version={0}' -f $productVersion
