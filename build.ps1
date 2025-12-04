@@ -233,66 +233,66 @@ which dotnet
     }
 }
 
-$ErrorActionPreference = 'Continue'
+# $ErrorActionPreference = 'Continue'
 
-prism install | Format-Table -AutoSize
+# prism install | Format-Table -AutoSize
 
-& (Join-Path -Path $PSScriptRoot -ChildPath 'Whiskey\Import-Whiskey.ps1' -Resolve)
+# & (Join-Path -Path $PSScriptRoot -ChildPath 'Whiskey\Import-Whiskey.ps1' -Resolve)
 
-$configPath = Join-Path -Path $PSScriptRoot -ChildPath 'whiskey.yml' -Resolve
+# $configPath = Join-Path -Path $PSScriptRoot -ChildPath 'whiskey.yml' -Resolve
 
-Write-Verbose -Message '# POWERSHELLVERSIONTABLE'
-$PSVersionTable | Format-List | Out-String | Write-Verbose
+# Write-Verbose -Message '# POWERSHELLVERSIONTABLE'
+# $PSVersionTable | Format-List | Out-String | Write-Verbose
 
-Write-Verbose -Message '# VARIABLES'
-Get-Variable | Format-Table | Out-String | Write-Verbose
+# Write-Verbose -Message '# VARIABLES'
+# Get-Variable | Format-Table | Out-String | Write-Verbose
 
-Write-Verbose -Message '# ENVIRONMENT PROPERTIES'
-[Environment] |
-    Get-Member -Static -MemberType Property |
-    Where-Object { $_.Name -ne 'StackTrace' } |
-    Select-Object -ExpandProperty 'Name' |
-    ForEach-Object { [pscustomobject]@{ Name = $_ ; Value = [Environment]::$_ } } |
-    Format-Table |
-    Out-String |
-    Write-Verbose
+# Write-Verbose -Message '# ENVIRONMENT PROPERTIES'
+# [Environment] |
+#     Get-Member -Static -MemberType Property |
+#     Where-Object { $_.Name -ne 'StackTrace' } |
+#     Select-Object -ExpandProperty 'Name' |
+#     ForEach-Object { [pscustomobject]@{ Name = $_ ; Value = [Environment]::$_ } } |
+#     Format-Table |
+#     Out-String |
+#     Write-Verbose
 
-$optionalArgs = @{ }
-if( $Clean )
-{
-    $optionalArgs['Clean'] = $true
-}
+# $optionalArgs = @{ }
+# if( $Clean )
+# {
+#     $optionalArgs['Clean'] = $true
+# }
 
-if( $Initialize )
-{
-    $optionalArgs['Initialize'] = $true
-}
+# if( $Initialize )
+# {
+#     $optionalArgs['Initialize'] = $true
+# }
 
-if( $PipelineName )
-{
-    $optionalArgs['PipelineName'] = $PipelineName
-}
+# if( $PipelineName )
+# {
+#     $optionalArgs['PipelineName'] = $PipelineName
+# }
 
-$context = New-WhiskeyContext -Environment 'Dev' -ConfigurationPath $configPath
-$apiKeys = @{
-                'PowerShellGallery' = 'WHS_POWERSHELL_GALLERY_API_KEY';
-                'github.com' = 'WHS_GITHUB_ACCESS_TOKEN';
-                'AppVeyor' = 'WHS_APPVEYOR_BEARER_TOKEN';
-            }
+# $context = New-WhiskeyContext -Environment 'Dev' -ConfigurationPath $configPath
+# $apiKeys = @{
+#                 'PowerShellGallery' = 'WHS_POWERSHELL_GALLERY_API_KEY';
+#                 'github.com' = 'WHS_GITHUB_ACCESS_TOKEN';
+#                 'AppVeyor' = 'WHS_APPVEYOR_BEARER_TOKEN';
+#             }
 
-Write-Verbose -Message '# ENVIRONMENT VARIABLES'
-Get-ChildItem 'env:' |
-    Where-Object { $_.Name -notin $apiKeys.Values } |
-    Format-Table |
-    Out-String |
-    Write-Verbose
+# Write-Verbose -Message '# ENVIRONMENT VARIABLES'
+# Get-ChildItem 'env:' |
+#     Where-Object { $_.Name -notin $apiKeys.Values } |
+#     Format-Table |
+#     Out-String |
+#     Write-Verbose
 
-$apiKeys.Keys |
-    Where-Object { Test-Path -Path ('env:{0}' -f $apiKeys[$_]) } |
-    ForEach-Object {
-        $apiKeyID = $_
-        $envVarName = $apiKeys[$apiKeyID]
-        Write-Verbose ('Adding API key "{0}" with value from environment variable "{1}".' -f $apiKeyID,$envVarName)
-        Add-WhiskeyApiKey -Context $context -ID $apiKeyID -Value (Get-Item -Path ('env:{0}' -f $envVarName)).Value
-    }
-Invoke-WhiskeyBuild -Context $context @optionalArgs
+# $apiKeys.Keys |
+#     Where-Object { Test-Path -Path ('env:{0}' -f $apiKeys[$_]) } |
+#     ForEach-Object {
+#         $apiKeyID = $_
+#         $envVarName = $apiKeys[$apiKeyID]
+#         Write-Verbose ('Adding API key "{0}" with value from environment variable "{1}".' -f $apiKeyID,$envVarName)
+#         Add-WhiskeyApiKey -Context $context -ID $apiKeyID -Value (Get-Item -Path ('env:{0}' -f $envVarName)).Value
+#     }
+# Invoke-WhiskeyBuild -Context $context @optionalArgs
