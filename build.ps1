@@ -199,7 +199,8 @@ which dotnet
         Write-Verbose "dotnet build $($params -join ' ')" -Verbose
         try
         {
-            dotnet build /filelogger9 /flp9:LogFile=msbuild9.log;Verbosity=diag
+            Write-Host "Plain dotnet build"
+            dotnet build
 
             #dotnet build $params
         }
