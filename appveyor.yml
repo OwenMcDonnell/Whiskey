@@ -33,9 +33,9 @@ environment:
   #   job_group: ps
   #   appveyor_build_worker_image: Visual Studio 2017 # Has minimum PackageManagement and PowerShellGet modules.
 
-  - job_name: Windows Server 2016 / Visual Studio 2017
-    job_group: ps
-    appveyor_build_worker_image: Visual Studio 2017
+  # - job_name: Windows Server 2016 / Visual Studio 2017
+  #   job_group: ps
+  #   appveyor_build_worker_image: Visual Studio 2017
 
   - job_name: Windows Server 2019 / Visual Studio 2019
     job_group: ps
@@ -138,3 +138,4 @@ for:
         export APPVEYOR_SSH_BLOCK=true
         curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
       fi
+
