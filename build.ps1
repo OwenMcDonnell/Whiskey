@@ -187,10 +187,10 @@ which dotnet
             {
                 '/p:VersionSuffix={0}' -f $versionSuffix
             }
-            if( $VerbosePreference -eq 'Continue' )
-            {
-                '--verbosity=n'
-            }
+            # if( $VerbosePreference -eq 'Continue' )
+            # {
+            #     '--verbosity=n'
+            # }
             '/filelogger9'
             ('/flp9:LogFile={0};Verbosity=diag' -f (Join-Path -Path $outputDirectory -ChildPath 'msbuild.whiskey.log'))
         }
