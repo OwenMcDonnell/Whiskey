@@ -169,7 +169,7 @@ which dotnet
     $versionSuffix = '{0}{1}' -f $prereleaseInfo,$buildInfo
     $productVersion = '{0}{1}' -f $version,$versionSuffix
 
-    #Push-Location -Path (Join-Path -Path $PSScriptRoot -ChildPath 'Assembly')
+    Push-Location -Path (Join-Path -Path $PSScriptRoot -ChildPath 'Assembly')
     try
     {
         $outputDirectory = Join-Path -Path $PSScriptRoot -ChildPath '.output'
@@ -200,9 +200,9 @@ which dotnet
         try
         {
             Write-Host "Plain dotnet build"
-            dotnet build
+            #dotnet build
 
-            #dotnet build $params
+            dotnet build $params
         }
         finally
         {
