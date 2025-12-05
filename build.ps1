@@ -24,6 +24,7 @@ Starts a build of Whiskey.
 Starts a build and uses "Release" as the build configuration when building the Whiskey assembly.
 #>
 
+. "./common.ps1"
 
 [CmdletBinding(DefaultParameterSetName='Build')]
 param(
