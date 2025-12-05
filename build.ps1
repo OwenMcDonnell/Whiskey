@@ -1,3 +1,4 @@
+#!/usr/bin/env pwsh
 
 <#
 .SYNOPSIS
@@ -22,6 +23,7 @@ Starts a build of Whiskey.
 
 Starts a build and uses "Release" as the build configuration when building the Whiskey assembly.
 #>
+
 . "$PSScriptRoot/common.ps1"
 
 [CmdletBinding(DefaultParameterSetName='Build')]
