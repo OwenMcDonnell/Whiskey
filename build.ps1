@@ -41,7 +41,8 @@ param(
 )
 
 #Requires -Version 5.1
-Set-StrictMode -Version Latest
+#Set-StrictMode -Version Latest
+Set-StrictMode -Off
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $InformationPreference = 'Continue'
