@@ -69,7 +69,7 @@ for:
     - job_group: ps
   build_script:
   - ps: &build_script |
-        . "$PSScriptRoot/common.ps1"
+        . "./common.ps1"
         $ProgressPreference = 'SilentlyContinue'
         Invoke-WebRequest -Uri 'https://live.sysinternals.com/procexp.exe' -OutFile '~/Desktop/procexp.exe'
         Invoke-WebRequest -Uri 'https://live.sysinternals.com/procmon.exe' -OutFile '~/Desktop/procmon.exe'
@@ -142,6 +142,7 @@ for:
         export APPVEYOR_SSH_BLOCK=true
         curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
       fi
+
 
 
 
