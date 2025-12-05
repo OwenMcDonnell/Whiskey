@@ -182,12 +182,12 @@ which dotnet
         dotnet --version
         $params = & {
             "--configuration=$($MSBuildConfiguration)"
-            #'/p:Version={0}' -f $productVersion
-            #'/p:VersionPrefix={0}' -f $version
-            #if( $versionSuffix )
-            #{
-            #    '/p:VersionSuffix={0}' -f $versionSuffix
-            #}
+            '/p:Version={0}' -f $productVersion
+            '/p:VersionPrefix={0}' -f $version
+            if( $versionSuffix )
+            {
+               '/p:VersionSuffix={0}' -f $versionSuffix
+            }
             if( $VerbosePreference -eq 'Continue' )
             {
                 '--verbosity=n'
@@ -201,9 +201,9 @@ which dotnet
         try
         {
             Write-Host "Plain dotnet build"
-            dotnet build
+            #dotnet build
 
-            #dotnet build $params
+            Start-ProcessWithOutput "dotnet build $params"
         }
         finally
         {
