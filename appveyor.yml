@@ -91,7 +91,7 @@ for:
             {
               $Global:VerbosePreference = 'Continue'
             }
-            
+            iwr https://raw.githubusercontent.com/webmd-health-services/Prism/main/Scripts/init.ps1 | iex | Format-Table
             .\build.ps1
         }
         finally
@@ -117,7 +117,7 @@ for:
   # on_failure:
   # - ps: Get-ChildItem .\.output\*.log | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
   # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-#iwr https://raw.githubusercontent.com/webmd-health-services/Prism/main/Scripts/init.ps1 | iex | Format-Table
+
 # Build in PowerShell
 - matrix:
     only:
@@ -141,6 +141,7 @@ for:
         export APPVEYOR_SSH_BLOCK=true
         curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
       fi
+
 
 
 
