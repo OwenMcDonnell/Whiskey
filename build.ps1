@@ -201,9 +201,9 @@ which dotnet
         try
         {
             Write-Host "Plain dotnet build"
-            #dotnet build
+            dotnet build
 
-            dotnet build $params
+            #dotnet build $params
         }
         finally
         {
